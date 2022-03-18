@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       <Blog head="This is my Chosen🏹 Quote." author="Mine"></Blog>
 
       <Mobile></Mobile>
+      <ToDo></ToDo>
     </div>
   );
 }
@@ -39,6 +40,23 @@ const Mobile = () => {
     <div>
       <h1>{ battery}</h1>
       <button className='btn' onClick={batteryDown}>Battery Down ➖</button>
+    </div>
+  )
+}
+
+const ToDo = () => {
+  const [todo, setTodo] = useState([]) // set a defualt array in the useState Function
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(res => res.json())
+    .then(data => setTodo(data))
+  }, []) // Empty array to avoid Looping
+  
+  return (
+    <div>
+      {
+        todo.map(task => <h4>{task.title} - {task.completed ? "✅" : '❌' }</h4>)
+      }
     </div>
   )
 }
@@ -67,4 +85,4 @@ export default App;
 
 /* ১০. (স্পেশাল চ্যালেঞ্জ) উপরের ব্যাটারী ডাউন বাটনে চাপ দিলে কমবে। তবে কমতে কমতে যখন ব্যাটারি এর পরিমাণ ০ হয়ে যাবে। তারপরে আর বাটনে চাপ দিলে। ব্যাটারি কমবে না। অর্থাৎ নেগেটিভ হবে না। (দেখো এইটা করতে পারো কিনা) ✅*/
 
-/* ১১. json placeholder এর ওয়েবসাইট এ গিয়ে todo এর ডাটা লোড করে। সেগুলাকে দেখাতে পারো কিনা দেখো। */
+/* ১১. json placeholder এর ওয়েবসাইট এ গিয়ে todo এর ডাটা লোড করে। সেগুলাকে দেখাতে পারো কিনা দেখো।✅ */
