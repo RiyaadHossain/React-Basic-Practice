@@ -7,3 +7,12 @@
   color: rgb(78, 77, 77);
   margin-bottom: 50px
 }
+
+.btn{
+  border: none;
+  padding: 15px;
+  background-color: lightseagreen;
+  font-size: 19px;
+  border-radius: 5px;
+  color: white;
+}
